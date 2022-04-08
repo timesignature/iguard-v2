@@ -14,7 +14,7 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->text('lat')->nullable();
             $table->text('lng')->nullable();
-            $table->bigInteger('client_id')->nullable();
+            $table->bigInteger('customer_id')->nullable();
             $table->bigInteger('company_id')->nullable();
             $table->timestamps();
         });

@@ -16,6 +16,7 @@ class SiteController extends Controller
 
         $d=new Site();
         $d->address=$request->address;
+        $d->customer_id=$request->customer;
         $d->lat=$request->lat;
         $d->lng=$request->lng;
         $d->save();
