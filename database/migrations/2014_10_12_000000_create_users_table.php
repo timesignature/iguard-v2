@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->text('name')->nullable();
             $table->text('email')->nullable();
+            $table->text('phone')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->text('password')->nullable();
             $table->text('api_token')->nullable();

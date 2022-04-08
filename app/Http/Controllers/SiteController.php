@@ -9,9 +9,10 @@ class SiteController extends Controller
 {
     public function add(Request $request){
         $this->validate($request,[
-            'address'=>'required',
+            'address'=>'required|unique:sites',
             'lat'=>'required',
             'lng'=>'required',
+            'customer'=>'required',
         ]);
 
         $d=new Site();
