@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Mail\EmployeeCreatedMail;
-use App\Mail\UserCreateMail;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
@@ -16,18 +14,24 @@ class EmployeeController extends Controller
     public function add(Request $request){
         $this->validate($request,[
             'name'=>'required',
+            'phone'=>'required',
+            'address'=>'required',
             'email'=>'required|unique:users|email',
-            'image'=>'required|mimes:jpg,jpeg,bmp,png,webp'
+            'image'=>'required|mimes:jpg,jpeg,bmp,png,webp',
+            'rights'=>'required'
         ]);
 
         $u=new User();
         $u->name=$request->name;
         $u->email=$request->email;
         $u->phone=$request->phone;
+        $u->address=$request->address;
+        $u->hasRights=$request->rights;
+        $u->api_token=Str::random(60);
         $u->image=$this->image_upload($request,'employees');
         $u->save();
 
-        Mail::to($u->email)->send(new EmployeeCreatedMail($u));
+//        Mail::to($u->email)->send(new EmployeeCreatedMail($u));
         return $u;
     }
 

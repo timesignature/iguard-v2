@@ -18,12 +18,13 @@ return new class extends Migration
             $table->text('name')->nullable();
             $table->text('email')->nullable();
             $table->text('phone')->nullable();
+            $table->text('address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->text('password')->nullable();
             $table->text('api_token')->nullable();
             $table->text('image')->nullable();
             $table->bigInteger('company_id')->nullable();
-            $table->text('type')->nullable(); //super,admin,moderator,employee
+            $table->boolean('hasRights')->default(false); //if true then this one can login to the app
             $table->boolean('isActive')->default(false); //super,admin,moderator,employee
             $table->rememberToken();
             $table->timestamps();
